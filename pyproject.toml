@@ -1,0 +1,51 @@
+[project]
+name = "economic-calendar"
+version = "0.1.0"
+description = "Multi-source economic calendar data pipeline"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.26.0",
+    "tenacity>=8.2.0",
+]
+
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "FA",
+    "D",
+    "DTZ",
+    "EXE",
+    "COM812",
+    "PGH003",
+    "PLR0913",
+    "TID252",
+    "S101",
+    "S311",
+    "RET504",
+    "ISC001",
+    "PLR2004",
+    "ANN101",
+    "ANN003",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.9",
+]
+
