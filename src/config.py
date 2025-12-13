@@ -7,5 +7,3 @@ class ProxyConfig:
 
     http_proxy: str | None = None
     https_proxy: str | None = None
-
-
