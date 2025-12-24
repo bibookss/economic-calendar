@@ -24,8 +24,6 @@ jobs:
       - name: Install dependencies
         run: uv sync --frozen
 
-      - name: Lint check
-        run: uv run ruff check .
-
-      - name: Format check
-        run: uv run ruff format --check .
+      - name: Lint and format check
+        run: uv run ruff check . && uv run ruff format --check .
+        
