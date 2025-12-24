@@ -2,7 +2,7 @@
 name = "economic-calendar"
 version = "0.1.0"
 description = "Multi-source economic calendar data pipeline"
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 dependencies = [
     "boto3>=1.42.9",
     "httpx>=0.26.0",
