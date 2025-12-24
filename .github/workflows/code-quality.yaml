@@ -1,6 +1,11 @@
-name: Lint
+name: Code Quality
 
-on: [push]
+on:
+  push:
+    branches:
+      - "**"
+    tags:
+      - "v*"
 
 jobs:
   ruff:
@@ -21,3 +26,6 @@ jobs:
 
       - name: Lint check
         run: uv run ruff check .
+
+      - name: Format check
+        run: uv run ruff format --check .
