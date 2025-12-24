@@ -9,7 +9,7 @@ EVENTS_API_URL_TEMPLATE = (
     "https://calendar-api.fxsstatic.com/en/api/v2/eventDates/{start_date}/{end_date}"
 )
 
-EVENT_API_URL_TEMPLATE = (
+EVENT_DETAILS_API_URL_TEMPLATE = (
     "https://calendar-api.fxsstatic.com/en/api/v1/eventDates/{event_id}"
 )
 
@@ -145,9 +145,9 @@ class FXStreetResource:
         )
         return response.json()
 
-    def get_calendar_event(self, event_id: str) -> dict:
-        logger.info("Getting calendar event for %s ...", event_id)
-        url = EVENT_API_URL_TEMPLATE.format(event_id=event_id)
+    def get_event_details(self, event_id: str) -> dict:
+        logger.info("Getting event details for %s ...", event_id)
+        url = EVENT_DETAILS_API_URL_TEMPLATE.format(event_id=event_id)
         response = self.http_client.request(
             method="GET",
             url=url,

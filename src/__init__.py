@@ -1,3 +1,3 @@
-from .resources import FXStreetResource
+from .resources import FXStreetResource, InvestingResource
 
-__all__ = ["FXStreetResource"]
+__all__ = ["FXStreetResource", "InvestingResource"]

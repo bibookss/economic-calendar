@@ -1,0 +1,18 @@
+worker: fxstreet
+
+http:
+  timeout: 15.0
+  max_retries: 3
+  retry_backoff_base: 2.0
+  rate_limit_delay: 1.0
+  proxy_url: null
+
+s3:
+  endpoint: <S3_ENDPOINT>
+  access_key: <S3_ACCESS_KEY>
+  secret_key: <S3_SECRET_KEY>
+  bucket_name: fxstreet
+  use_ssl: false
+  region: <S3_REGION>
+
+raw_output_name_template: fxstreet/events/{start_date}_{end_date}.json
