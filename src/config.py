@@ -1,4 +1,8 @@
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from src.http_client import HTTPClient
 
 
 @dataclass(frozen=True, slots=True)

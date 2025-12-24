@@ -29,7 +29,8 @@ class FXStreetWorker:
         if mode == "raw":
             self._run_raw(start_date, end_date)
         else:
-            raise ValueError(f"Invalid mode: {mode}")
+            msg = f"Invalid mode: {mode}"
+            raise ValueError(msg)
 
     def _run_raw(self, start_date: date, end_date: date) -> None:
         logger.info(
@@ -71,15 +72,13 @@ class FXStreetWorker:
                 )
             else:
                 logger.exception(
-                    "Failed to create bucket %s: %s",
+                    "Failed to create bucket %s",
                     self.fxstreet_config.s3_config.bucket_name,
-                    e,
                 )
                 raise
-        except Exception as e:
+        except Exception:
             logger.exception(
-                "Failed to create bucket %s: %s",
+                "Failed to create bucket %s",
                 self.fxstreet_config.s3_config.bucket_name,
-                e,
             )
             raise

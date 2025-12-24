@@ -57,10 +57,12 @@ def build_worker(config_data: Mapping[str, Any]) -> Worker:
 
     worker_name = config_data.get("worker")
     if not isinstance(worker_name, str):
-        raise ValueError("`worker` must be a string")
+        msg = "`worker` must be a string"
+        raise TypeError(msg)
 
     builder = WORKER_MAPPING.get(worker_name)
     if builder is None:
-        raise ValueError(f"Unknown worker: {worker_name}")
+        msg = f"Unknown worker: {worker_name}"
+        raise ValueError(msg)
 
     return builder(config_data)
