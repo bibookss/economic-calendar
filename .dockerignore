@@ -32,12 +32,6 @@ env/
 tests/
 test_*.py
 
-# DAGs (if not needed in runtime)
-dags/
-
 # Other
 .DS_Store
 *.log
-
-
-

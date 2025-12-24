@@ -47,6 +47,7 @@ WORKDIR /app
 COPY --from=builder /app/.venv /app/.venv
 COPY src/ ./src/
 COPY main.py ./main.py
+COPY config/ ./config/
 
 ENV PATH="/app/.venv/bin:$PATH"
 ENV PYTHONPATH="/app/src"
