@@ -1,10 +1,15 @@
+import os
 from collections.abc import Callable, Mapping
 from datetime import date
 from typing import Any, Protocol
 
+from dotenv import load_dotenv
+
 from src.config import FXStreetConfig, ProxyConfig, S3Config
 from src.http_client import HTTPClient
 from src.workers import FXStreetWorker
+
+load_dotenv()
 
 
 class Worker(Protocol):
@@ -29,10 +34,18 @@ def _build_fxstreet_worker(config_data: Mapping[str, Any]) -> Worker:
     )
 
     s3_cfg = config_data["s3"]
+    s3_endpoint = os.getenv("S3_ENDPOINT")
+    s3_access_key = os.getenv("S3_ACCESS_KEY")
+    s3_secret_key = os.getenv("S3_SECRET_KEY")
+
+    if not s3_endpoint or not s3_access_key or not s3_secret_key:
+        msg = "S3_ENDPOINT, S3_ACCESS_KEY, and S3_SECRET_KEY must be set"
+        raise ValueError(msg)
+
     s3_config = S3Config(
-        endpoint=s3_cfg["endpoint"],
-        access_key=s3_cfg["access_key"],
-        secret_key=s3_cfg["secret_key"],
+        endpoint=s3_endpoint,
+        access_key=s3_access_key,
+        secret_key=s3_secret_key,
         bucket_name=s3_cfg["bucket_name"],
         use_ssl=s3_cfg.get("use_ssl", False),
         region=s3_cfg.get("region", "us-east-1"),

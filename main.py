@@ -18,13 +18,6 @@ def load_config(config_path: Path) -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Economic calendar worker")
     parser.add_argument(
-        "-c",
-        "--config",
-        type=Path,
-        required=True,
-        help="Path to worker configuration YAML file",
-    )
-    parser.add_argument(
         "-s",
         "--start-date",
         type=str,
@@ -45,15 +38,15 @@ def main() -> None:
         default="raw",
         help="Worker mode (default: raw)",
     )
-    parser.add_argument(
-        "--log-config", type=Path, help="Path to logging configuration file"
-    )
 
     args = parser.parse_args()
 
-    fileConfig(args.log_config)
+    config_path = Path("config/fxstreet.yaml")
+    log_config_path = Path("config/log.conf")
 
-    config_data = load_config(args.config)
+    fileConfig(log_config_path)
+
+    config_data = load_config(config_path)
     worker = build_worker(config_data)
     start_date = datetime.strptime(args.start_date, "%Y%m%d").date()
     end_date = datetime.strptime(args.end_date, "%Y%m%d").date()
