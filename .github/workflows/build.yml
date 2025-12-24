@@ -52,7 +52,7 @@ jobs:
             BRANCH_SANITIZED=$(echo "${BRANCH}" | tr '/' '-' | tr '[:upper:]' '[:lower:]')
             SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
             echo "tag=${BRANCH_SANITIZED}-${SHORT_SHA}" >> $GITHUB_OUTPUT
-            echo "should_push=false" >> $GITHUB_OUTPUT
+            echo "should_push=true" >> $GITHUB_OUTPUT
           else
             echo "tag=test-$(date +%s)" >> $GITHUB_OUTPUT
             echo "should_push=false" >> $GITHUB_OUTPUT
